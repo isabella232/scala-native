@@ -10,7 +10,10 @@ val libCrossScalaVersions = Seq("2.11.8", "2.11.11")
 
 lazy val baseSettings = Seq(
   organization := "org.scala-native",
-  version := nativeVersion
+  version := nativeVersion,
+  publishArtifact.in(Compile, packageDoc) := false,
+  publishArtifact.in(packageDoc) := false,
+  sources.in(Compile, doc) := Seq.empty
 )
 
 addCommandAlias(
@@ -420,7 +423,6 @@ lazy val tests =
 lazy val sandbox =
   project
     .in(file("sandbox"))
-    .settings(noPublishSettings)
     .settings(
       // nativeOptimizerReporter := OptimizerReporter.toDirectory(
       //   crossTarget.value)
