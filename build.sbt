@@ -9,7 +9,7 @@ val libScalaVersion       = "2.11.11"
 val libCrossScalaVersions = Seq("2.11.8", "2.11.11")
 
 lazy val baseSettings = Seq(
-  organization := "org.scala-native",
+  organization := "io.get-coursier.scala-native",
   version := nativeVersion,
   publishArtifact.in(Compile, packageDoc) := false,
   publishArtifact.in(packageDoc) := false,
@@ -426,6 +426,8 @@ lazy val sandbox =
     .settings(
       // nativeOptimizerReporter := OptimizerReporter.toDirectory(
       //   crossTarget.value)
+      organization := "io.get-coursier.scala-native",
+      version := "0.3.0-coursier-1",
       scalaVersion := libScalaVersion
     )
     .enablePlugins(ScalaNativePlugin)
