@@ -10,10 +10,7 @@ val libCrossScalaVersions = Seq("2.11.8", "2.11.11")
 
 lazy val baseSettings = Seq(
   organization := "io.get-coursier.scala-native",
-  version := nativeVersion,
-  publishArtifact.in(Compile, packageDoc) := false,
-  publishArtifact.in(packageDoc) := false,
-  sources.in(Compile, doc) := Seq.empty
+  version := nativeVersion
 )
 
 addCommandAlias(
