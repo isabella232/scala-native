@@ -114,15 +114,13 @@ lazy val mavenPublishSettings = Seq(
     }
   }.value,
   credentials ++= {
-    for {
-      realm    <- sys.env.get("MAVEN_REALM")
-      domain   <- sys.env.get("MAVEN_DOMAIN")
-      user     <- sys.env.get("MAVEN_USER")
-      password <- sys.env.get("MAVEN_PASSWORD")
-    } yield {
-      Credentials(realm, domain, user, password)
+    Seq("SONATYPE_USER", "SONATYPE_PASS").map(sys.env.get) match {
+      case Seq(Some(user), Some(pass)) =>
+        Seq(Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", user, pass))
+      case _ =>
+        Seq()
     }
-  }.toSeq
+  }
 ) ++ publishSettings
 
 lazy val publishSettings = Seq(
