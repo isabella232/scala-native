@@ -428,6 +428,7 @@ lazy val sandbox =
       version := "0.3.0-coursier-1",
       scalaVersion := libScalaVersion
     )
+    .settings(mavenPublishSettings)
     .enablePlugins(ScalaNativePlugin)
 
 lazy val benchmarks =
